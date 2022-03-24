@@ -123,10 +123,10 @@ const app = {
             }
         }
         auto = setInterval(seekUpdate, 1000)
-        progress.onclick = function (e) {
+        progress.onclick = function () {
             clearInterval(auto1)
             clearInterval(auto)
-            var value = Math.floor(e.target.value)
+            var value = Math.floor(this.value)
             const seekTime = value / 100 * audio.duration
             audio.currentTime = seekTime
             auto1 = setInterval(seekUpdate, 1000)
