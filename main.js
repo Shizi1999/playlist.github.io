@@ -21,39 +21,39 @@ const app = {
     isRepeat: false,
     songs: [
         {
-            "name": "Chờ người trở lại",
+            "name": "Chân Tình",
             "singer": "Jay Chou",
-            "path": "./music/chờ người trở lại.mp3",
+            "path": "./music/Chân Tình.mp3",
             "image": "./img/1.jpg"
         },
         {
-            "name": "Giang Thượng Vãn Phong Ngâm",
+            "name": "Chiều Lên Bản Thượng",
             "singer": "Jane Zhang",
-            "path": "./music/Giang Thượng Vãn Phong Ngâm.mp3",
+            "path": "./music/Chiều lên bản thượng.mp3",
             "image": "./img/2.jpg"
         },
         {
-            "name": "Họa tình",
+            "name": "Ngày Chưa Giông Bão",
             "singer": "Shou Zhen",
-            "path": "./music/Họa tình.mp3",
+            "path": "./music/Ngày chưa giông bão.mp3",
             "image": "./img/3.jpg"
         },
         {
-            "name": "Vì người mà đến",
+            "name": "Nhắm Mắt Thấy Mùa Hè",
             "singer": "Shi Zi",
-            "path": "./music/Vì người mà đến.mp3",
+            "path": "./music/Nhắm mắt thấy mùa hè.mp3",
             "image": "./img/4.jpg"
         },
         {
-            "name": "Chân tình",
+            "name": "Niềm Vui Của Em",
             "singer": "Jay Chou",
-            "path": "./music/Chân Tình.mp3",
+            "path": "./music/Niềm vui của em.mp3",
             "image": "./img/5.jpg"
         },
         {
-            "name": "Đào Hoa Nặc",
+            "name": "Tháng Tư Là Lời Nói Dối Của Em",
             "singer": "G.E.M",
-            "path": "./music/Đào hoa nặc.mp3",
+            "path": "./music/Tháng tư là lời nói dối của em.mp3",
             "image": "./img/6.jpg"
         }
     ],
@@ -199,7 +199,7 @@ const app = {
         setTimeout(()=>{
             let song = $(".song.active")
             let string = "nearest"
-            if(song.dataset.index<3){
+            if(song.dataset.index<1){
             string = "center"
             }
             song.scrollIntoView({
@@ -210,7 +210,7 @@ const app = {
     },
     nextSong: function () {
         this.currentIndex++
-        if (this.currentIndex >= (this.songs.length - 1)) {
+        if (this.currentIndex >= (this.songs.length)) {
             this.currentIndex = 0
         }
         this.loadCurrentSong()
