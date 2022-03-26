@@ -9,7 +9,6 @@ const player = $(".player")
 const progress = $("#progress")
 const nextBtn = $(".btn-next")
 const preBtn = $(".btn-prev")
-var auto, auto1
 const ranBtn = $(".btn-random")
 const reBtn = $(".btn-repeat")
 const playlist = $(".playlist")
@@ -60,7 +59,7 @@ const app = {
 
     render: function () {
         const htmls = this.songs.map((song, index) => {
-            return `<div class="song ${index === this.currentIndex ? "active": ""}" data-index = "${index}">
+            return `<div class="song ${index === this.currentIndex ? "active" : ""}" data-index = "${index}">
             <div class="thumb" style="background-image: url('${song.image}')">
             </div>
             <div class="body">
@@ -101,7 +100,7 @@ const app = {
             } else {
                 audio.play()
             }
-            
+
         }
         // Audio dang play
         audio.onplay = () => {
@@ -116,20 +115,17 @@ const app = {
             cdThumbAnimate.pause()
         }
         // Khi tien do bai hat thay doi
-        function seekUpdate() {
+        audio.ontimeupdate = function () {
             if (audio.duration) {
                 const progressPercent = Math.floor(audio.currentTime / audio.duration * 100)
                 progress.value = progressPercent
             }
         }
-        auto = setInterval(seekUpdate, 1000)
-        progress.onclick = function () {
-            clearInterval(auto1)
-            clearInterval(auto)
-            var value = Math.floor(this.value)
-            const seekTime = value / 100 * audio.duration
-            audio.currentTime = seekTime
-            auto1 = setInterval(seekUpdate, 1000)
+        progress.oninput = function (e) {
+            if (audio.duration) {
+                const seekTime = audio.duration / 100 * e.target.value
+                audio.currentTime = seekTime
+            }
         }
         // next song
         nextBtn.onclick = function () {
@@ -159,25 +155,25 @@ const app = {
             this.classList.toggle("active", _this.isRandom)
         }
         // end song
-        audio.onended = function(){
-            if(_this.isRepeat){
+        audio.onended = function () {
+            if (_this.isRepeat) {
                 this.play();
-            }else{
+            } else {
                 nextBtn.click();
             }
         }
         // repeat
-        reBtn.onclick =function(){
+        reBtn.onclick = function () {
             _this.isRepeat = !_this.isRepeat
             this.classList.toggle("active", _this.isRepeat)
         }
         // click vao bai hat
-        playlist.onclick = function(e){
+        playlist.onclick = function (e) {
             const song = e.target.closest('.song:not(.active)')
             const option = e.target.closest('.option')
-            if(option){
-                
-            }else if(song){
+            if (option) {
+
+            } else if (song) {
                 _this.currentIndex = Number(song.dataset.index)
                 _this.loadCurrentSong()
                 _this.render()
@@ -185,7 +181,7 @@ const app = {
             }
         }
         // scroll to active song
-        
+
     },
 
     defineProperties: function () {
@@ -195,18 +191,18 @@ const app = {
             }
         })
     },
-    scrollToActiveSong: function(){
-        setTimeout(()=>{
+    scrollToActiveSong: function () {
+        setTimeout(() => {
             let song = $(".song.active")
             let string = "nearest"
-            if(song.dataset.index<1){
-            string = "center"
+            if (song.dataset.index < 1) {
+                string = "center"
             }
             song.scrollIntoView({
                 behavior: "smooth",
                 block: string
             })
-        },300)
+        }, 300)
     },
     nextSong: function () {
         this.currentIndex++
