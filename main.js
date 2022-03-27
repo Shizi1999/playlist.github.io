@@ -82,7 +82,7 @@ const app = {
     </div>`
         const str = defaultStr + htmls.join("")
         playlist.innerHTML = str
-        // this.handleEvents()
+        this.handleEvents()
     },
 
 
@@ -192,8 +192,7 @@ const app = {
                 _this.currentIndex = Number(song.dataset.index)
                 _this.loadCurrentSong()
                 _this.render()
-                _this.cdThumbAnimate.cancel()
-                _this.handleEvents()
+                cdThumbAnimate.cancel()
                 audio.play()
             }
         }
