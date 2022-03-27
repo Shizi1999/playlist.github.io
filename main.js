@@ -82,7 +82,7 @@ const app = {
     </div>`
         const str = defaultStr + htmls.join("")
         playlist.innerHTML = str
-        this.handleEvents()
+        // this.handleEvents()
     },
 
 
@@ -92,7 +92,7 @@ const app = {
         const optionMode = $(".change")
         const mode = $(".mode")
         const _this = this
-        const cdWidth = 200
+        const cdWidth = 200 
         // Quay cd thumb
         const cdThumbAnimate = cdThumb.animate([
             { transform: 'rotate(360deg)' }],
@@ -100,7 +100,7 @@ const app = {
                 duration: 10000,
                 iterations: Infinity
             })
-        cdThumbAnimate.pause()
+        cdThumbAnimate.cancel()
         // Su kien scroll
         window.onscroll = () => {
             const scrollTop = window.scrollY || document.documentElement.scrollTop
@@ -192,6 +192,8 @@ const app = {
                 _this.currentIndex = Number(song.dataset.index)
                 _this.loadCurrentSong()
                 _this.render()
+                _this.cdThumbAnimate.cancel()
+                _this.handleEvents()
                 audio.play()
             }
         }
