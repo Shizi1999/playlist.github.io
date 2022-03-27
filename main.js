@@ -18,6 +18,7 @@ const app = {
     isPlaying: false,
     isRandom: false,
     isRepeat: false,
+    isDark: false,
     songs: [
         {
             "name": "Chân Tình",
@@ -71,11 +72,22 @@ const app = {
             </div>
           </div>`
         })
-        const str = htmls.join("")
+        const defaultStr = `<div class="change header">
+        <div class="title">PlayList</div>
+        <div class="mode">
+            <div class="light"><i class="fa-solid fa-sun"></i></div>
+            <div class="dark"><i class="fa-solid fa-moon"></i></div>
+        </div>
+    </div>`
+        const str = defaultStr + htmls.join("")
         playlist.innerHTML = str
     },
 
     handleEvents: function () {
+        const lightMode = $(".light")
+        const darkMode = $(".dark")
+        const optionMode = $(".change")
+        const mode = $(".mode")
         const _this = this
         const cdWidth = cd.offsetWidth
         // Quay cd thumb
@@ -180,7 +192,54 @@ const app = {
                 audio.play()
             }
         }
-        // scroll to active song
+        // Change mode
+        const lightAni = lightMode.animate(
+            [
+                { transform: 'translateX(20px)', opacity: 0 },
+            ],
+            {
+                duration: 300,
+                iterations: 1
+            })
+        const darkAni = darkMode.animate(
+            [
+                { transform: 'translateX(-20px)', opacity: 0 },
+            ],
+            {
+                duration: 300,
+                iterations: 1
+            })
+        lightAni.pause()
+        darkAni.pause()
+        optionMode.onclick = () => {
+            if (_this.isDark) {
+                darkAni.play()
+                setTimeout(() => {
+                    lightMode.style.display = "block"
+                    darkMode.style.display = "none"
+                }, 200)
+                mode.style.backgroundColor = "rgb(221, 221, 221)"
+            } else {
+                lightAni.play()
+                setTimeout(() => {
+                    lightMode.style.display = "none"
+                    darkMode.style.display = "block"
+                }, 200)
+                mode.style.backgroundColor = "#f54f7b"
+            }
+            $("#body").classList.toggle("darkmode")
+            $(".dashboard").classList.toggle("darkmode")
+            let listSongs = document.querySelectorAll(".song")
+            listSongs.forEach(function(song){
+                if(!song.classList.contains("active")){
+                    song.classList.toggle("darkmode")
+                    song.querySelector(".title").classList.toggle("darkmodetext")
+                    console.log(song.querySelector(".title"))
+                }
+            })
+            optionMode.classList.toggle("darkmode")
+            _this.isDark = !_this.isDark
+        }
 
     },
 
