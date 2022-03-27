@@ -152,6 +152,7 @@ const app = {
             audio.play()
             _this.render();
             _this.scrollToActiveSong();
+            cdThumbAnimate.cancel()
         }
         // pre song
         preBtn.onclick = function () {
@@ -163,6 +164,7 @@ const app = {
             audio.play()
             _this.render();
             _this.scrollToActiveSong();
+            cdThumbAnimate.cancel()
         }
         //random song
         ranBtn.onclick = function () {
