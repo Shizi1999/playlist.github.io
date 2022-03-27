@@ -149,7 +149,6 @@
   background-color: white;
   border-radius: 50%;
   float: left;
-  animation: fadeOut 0.3s ease;
 }
 
 .dark{
@@ -161,20 +160,10 @@
   background-color: black;
   border-radius: 50%;
   color: white;
-  animation: fadeOut 0.3s ease;
 }
 .fa-solid{
   z-index: 0;
 }
-@keyframes fadeOut{
-  from{
-    opacity: 0;
-  }
-  to{
-    opacity: 1;
-  }
-}
-
 .change.header{
   display: flex;
   justify-content: space-between;

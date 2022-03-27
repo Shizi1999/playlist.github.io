@@ -21,39 +21,39 @@ const app = {
     isDark: false,
     songs: [
         {
+            "name": "Nhắm Mắt Thấy Mùa Hè",
+            "singer": "Shi Zi",
+            "path": "./music/Nhắm mắt thấy mùa hè.mp3",
+            "image": "./img/1.jpg"
+        },
+        {
             "name": "Chân Tình",
             "singer": "Jay Chou",
             "path": "./music/Chân Tình.mp3",
-            "image": "./img/1.jpg"
+            "image": "./img/2.jpg"
         },
         {
             "name": "Chiều Lên Bản Thượng",
             "singer": "Jane Zhang",
             "path": "./music/Chiều lên bản thượng.mp3",
-            "image": "./img/2.jpg"
-        },
-        {
-            "name": "Ngày Chưa Giông Bão",
-            "singer": "Shou Zhen",
-            "path": "./music/Ngày chưa giông bão.mp3",
             "image": "./img/3.jpg"
-        },
-        {
-            "name": "Nhắm Mắt Thấy Mùa Hè",
-            "singer": "Shi Zi",
-            "path": "./music/Nhắm mắt thấy mùa hè.mp3",
-            "image": "./img/4.jpg"
         },
         {
             "name": "Niềm Vui Của Em",
             "singer": "Jay Chou",
             "path": "./music/Niềm vui của em.mp3",
-            "image": "./img/5.jpg"
+            "image": "./img/4.jpg"
         },
         {
             "name": "Tháng Tư Là Lời Nói Dối Của Em",
             "singer": "G.E.M",
             "path": "./music/Tháng tư là lời nói dối của em.mp3",
+            "image": "./img/5.jpg"
+        },
+        {
+            "name": "Ngày Chưa Giông Bão",
+            "singer": "Shou Zhen",
+            "path": "./music/Ngày chưa giông bão.mp3",
             "image": "./img/6.jpg"
         }
     ],
@@ -238,7 +238,7 @@ const app = {
                     lightMode.style.display = "none"
                     darkMode.style.display = "block"
                 }, 200)
-                mode.style.backgroundColor = "#f54f7b"
+                mode.style.backgroundColor = "#ec1f55"
             }
             $("#body").classList.toggle("darkmode")
             $(".dashboard").classList.toggle("darkmode")
