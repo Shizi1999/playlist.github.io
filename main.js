@@ -82,6 +82,10 @@ const app = {
     </div>`
         const str = defaultStr + htmls.join("")
         playlist.innerHTML = str
+        if(_this.isDark){
+            $(".header").children[0].classList.add("text")
+            $(".header").children[1].classList.add("darkmodetext")
+        }
         this.handleEvents()
     },
 
@@ -245,6 +249,8 @@ const app = {
                     song.querySelector(".title").classList.toggle("darkmodetext")
                 }
             })
+            $(".header").children[0].classList.toggle("text")
+            $(".header").children[1].classList.toggle("darkmodetext")
             $(".change").classList.toggle("darkmode")
             _this.isDark = !_this.isDark
         }
