@@ -44,7 +44,7 @@
     top: 0;
     width: 100%;
     max-width: 480px;
-    border-bottom: 1px solid #ebebeb;
+    z-index: 999;
   }
   
   /* HEADER */
@@ -77,6 +77,7 @@
     background-color: #333;
     background-size: cover;
     margin: auto;
+    z-index: 999;
   }
   
   /* CONTROL */
@@ -131,7 +132,7 @@
 }
 
 .mode{
-  border: 1px solid #f54f7b;
+  border: 1px solid var(--primary-color);
   width: 12%;
   border-radius: 30px;
   padding: 3px 1px;
@@ -173,6 +174,7 @@
     opacity: 1;
   }
 }
+
 .change.header{
   display: flex;
   justify-content: space-between;
@@ -239,10 +241,23 @@
   .darkmode{
     background-color: var(--dark-mode);
     color: white !important;
-    border-color: #f54f7b;
   }
  
   .darkmodetext{
     color: white !important;
+  }
+
+  .hide{
+    display: none;
+  }
+
+  .show{
+    display: block;
+  }
+  .fa-solid{
+    z-index: 0 !important;
+  }
+  .color{
+    background-color: var(--primary-color);
   }
   

@@ -59,12 +59,13 @@ const app = {
     ],
 
     render: function () {
+        _this = this
         const htmls = this.songs.map((song, index) => {
-            return `<div class="song ${index === this.currentIndex ? "active" : ""}" data-index = "${index}">
+            return `<div class="song ${_this.isDark ? "darkmode": ""} ${index === this.currentIndex ? "active" : ""}" data-index = "${index}">
             <div class="thumb" style="background-image: url('${song.image}')">
             </div>
             <div class="body">
-              <h3 class="title">${song.name}</h3>
+              <h3 class="title ${_this.isDark ? "darkmodetext": ""}">${song.name}</h3>
               <p class="author">${song.singer}</p>
             </div>
             <div class="option">
@@ -72,16 +73,18 @@ const app = {
             </div>
           </div>`
         })
-        const defaultStr = `<div class="change header">
+        const defaultStr = `<div class="change header ${_this.isDark ? "darkmode": ""}">
         <div class="title">PlayList</div>
-        <div class="mode">
-            <div class="light"><i class="fa-solid fa-sun"></i></div>
-            <div class="dark"><i class="fa-solid fa-moon"></i></div>
+        <div class="mode ${_this.isDark ? "color": ""}">
+            <div class="light ${_this.isDark ? "hide": "show"}"><i class="fa-solid fa-sun"></i></div>
+            <div class="dark ${!_this.isDark ? "hide": "show"}"><i class="fa-solid fa-moon"></i></div>
         </div>
     </div>`
         const str = defaultStr + htmls.join("")
         playlist.innerHTML = str
+        this.handleEvents()
     },
+
 
     handleEvents: function () {
         const lightMode = $(".light")
@@ -89,7 +92,7 @@ const app = {
         const optionMode = $(".change")
         const mode = $(".mode")
         const _this = this
-        const cdWidth = cd.offsetWidth
+        const cdWidth = 200
         // Quay cd thumb
         const cdThumbAnimate = cdThumb.animate([
             { transform: 'rotate(360deg)' }],
@@ -101,7 +104,7 @@ const app = {
         // Su kien scroll
         window.onscroll = () => {
             const scrollTop = window.scrollY || document.documentElement.scrollTop
-            const newWidth = cdWidth - scrollTop
+            let newWidth = cdWidth - scrollTop
             cd.style.width = newWidth > 0 ? newWidth + "px" : 0
             cd.style.opacity = newWidth / cdWidth
         }
@@ -211,6 +214,9 @@ const app = {
             })
         lightAni.pause()
         darkAni.pause()
+        if(this.isDark){
+            optionMode.click()
+        }
         optionMode.onclick = () => {
             if (_this.isDark) {
                 darkAni.play()
@@ -230,17 +236,15 @@ const app = {
             $("#body").classList.toggle("darkmode")
             $(".dashboard").classList.toggle("darkmode")
             let listSongs = document.querySelectorAll(".song")
-            listSongs.forEach(function(song){
-                if(!song.classList.contains("active")){
+            listSongs.forEach(function (song) {
+                if (!song.classList.contains("active")) {
                     song.classList.toggle("darkmode")
                     song.querySelector(".title").classList.toggle("darkmodetext")
-                    console.log(song.querySelector(".title"))
                 }
             })
-            optionMode.classList.toggle("darkmode")
+            $(".change").classList.toggle("darkmode")
             _this.isDark = !_this.isDark
         }
-
     },
 
     defineProperties: function () {
